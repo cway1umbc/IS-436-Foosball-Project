@@ -7,7 +7,8 @@
   }
   .container img {
     width: 150px;
-    display: block; margin: auto;
+    display: block; 
+    margin: auto;
   }
   body {
               font-family: Arial, sans-serif;
