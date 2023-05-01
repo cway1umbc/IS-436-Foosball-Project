@@ -1,5 +1,5 @@
 <?php
-include 'member.php';
+include 'retriever_user.php';
 ?>
 <html>
 <body>
