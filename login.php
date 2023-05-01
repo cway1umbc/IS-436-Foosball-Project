@@ -26,9 +26,6 @@ if($count==1){
     $_SESSION['email'] = $email;
 	
 	header("Location: index2.html"); /* Redirect browser */
+	exit();
 	}
-else
-	{
-	header("Location: index2.html"); /* Redirect browser */
-exit();
-}
+
