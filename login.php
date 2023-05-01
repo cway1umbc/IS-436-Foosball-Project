@@ -25,7 +25,7 @@ if($count==1){
     $_SESSION['loggedin'] = true;
     $_SESSION['email'] = $email;
 	
-	header("Location: mainpage.php"); /* Redirect browser */
+	header("Location: index2.html"); /* Redirect browser */
 	}
 else
 	{
