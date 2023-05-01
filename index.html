@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Account Creation Page</title>
+	<title>Sign Up</title>
 	<link rel="stylesheet" href="style.css">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
-	<div class="container">
-    <img src="https://i.imgur.com/PnZUXOL.png">
-    <p id= tagline>Retriever</p>
-		<h2>Create an account</h2>
-    
-		<form method="post" action="dbcon.php">
+	<section class = "container forms">
+		<div class="form sign up">
+			<img src="https://i.imgur.com/PnZUXOL.png">
+				<p id="tagline">Retriever</p>
+				<h2>Create an account</h2>
+		<form method="post" action="signup.php">
 			<input type="text" id="u_fname" name="u_fname" placeholder="First name">
 			<input type="text" id="u_lname" name="u_lname" placeholder="Last name">
 			<input type="text" id="u_email" name="u_email" placeholder="Email address">
 			<input type="password" id="u_password" name="u_password" placeholder="Password">
-      <br>
+			<br>
 			<input type="submit" value="Submit">
 		</form>
 	</div>
