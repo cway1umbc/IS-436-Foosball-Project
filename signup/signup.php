@@ -26,7 +26,7 @@ $dbname = "eunicea2";
 			// connection sucess check
 			$query = mysqli_query($conn,$sql);
 			if($query){
-				header("Location: login.html")
+				header("Location: login.html");
 			} else {
 				echo 'Error Occured';
 			}
