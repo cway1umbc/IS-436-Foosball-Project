@@ -83,12 +83,17 @@ form{
     border-bottom-width: 2px;
 }
 
-.field button{
-    background-color: #333;
-    color:white;
-}
-.field button:hover{
+input[type="submit"] {
     background-color: #D1B000;
+}
+
+input[type="submit"]:hover {
+    background-color: #333;
+    color: white;
+}
+
+.field button:hover{
+    background-color: #333;
     transition: all 0.3s ease;
     cursor: pointer;
 }
