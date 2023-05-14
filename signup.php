@@ -18,25 +18,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $errors = array();
     if (empty($fname)) {
         $errors[] = "First name is required";
-        echo "<script>alert('First name is required');</script>";
     }
     if (empty($lname)) {
         $errors[] = "Last name is required";
-        echo "<script>alert('Last name is required');</script>";
     }
     if (empty($email)) {
         $errors[] = "Email is required";
-        echo "<script>alert('Email is required');</script>";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format";
-        echo "<script>alert('Invalid email format');</script>";
     }
     if (empty($password)) {
         $errors[] = "Password is required";
-        echo "<script>alert('Password is required');</script>";
     } elseif (strlen($password) < 6) {
         $errors[] = "Password must be at least 6 characters long";
-        echo "<script>alert('Password must be at least 6 characters long');</script>";
     }
 
     // If there are errors, display them to the user
@@ -47,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         }
         echo "</ul>";
     } else {
-          // Hash the password
+        // Hash the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Insert into database
