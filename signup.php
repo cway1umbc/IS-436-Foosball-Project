@@ -14,50 +14,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Validate form data
-    $errors = array();
-    if (empty($fname)) {
-        $errors[] = "First name is required";
-    }
-    if (empty($lname)) {
-        $errors[] = "Last name is required";
-    }
-    if (empty($email)) {
-        $errors[] = "Email is required";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format";
-    }
-    if (empty($password)) {
-        $errors[] = "Password is required";
-    } elseif (strlen($password) < 6) {
-        $errors[] = "Password must be at least 6 characters long";
+    // Server-side validation
+    if (empty($fname) || empty($lname) || empty($email) || empty($password)) {
+        die("All fields must be filled out");
     }
 
-    // If there are errors, display them to the user
-    if (!empty($errors)) {
-        echo "<ul>";
-        foreach ($errors as $error) {
-            echo "<li>$error</li>";
-        }
-        echo "</ul>";
+    // Hash the password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insert into database
+    $sql = "INSERT INTO `signup` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
+
+    // Execute query and check for success
+    $query = mysqli_query($conn, $sql);
+    if ($query) {
+        header("Location: login.html");
+        exit; // make sure to exit after the redirect
     } else {
-        // Hash the password
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-        // Insert into database
-        $sql = "INSERT INTO `signup` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
-
-        // Execute query and check for success
-        $query = mysqli_query($conn, $sql);
-        if ($query) {
-            header("Location: login.html");
-            exit; // make sure to exit after the redirect
-        } else {
-            echo 'Error Occurred';
-        }
+        echo 'Error Occured';
     }
-
-    // Close database connection
-    mysqli_close($conn);
 }
 ?>
