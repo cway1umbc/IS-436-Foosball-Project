@@ -1,29 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sign Up</title>
-	<link rel="stylesheet" href="style.css">
-	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script>
+        function validateForm() {
+    var fname = document.forms["signupForm"]["fname"].value;
+    var lname = document.forms["signupForm"]["lname"].value;
+    var email = document.forms["signupForm"]["email"].value;
+    var password = document.forms["signupForm"]["password"].value;
+    if (fname == "" || lname == "" || email == "" || password == "") {
+        alert("All fields must be filled out");
+        return false;
+    }
+    if (email.indexOf("@") == -1 || email.indexOf(".") == -1) {
+        alert("Invalid email address");
+        return false;
+    }
+    // Add any additional validation checks here
+    return true;
+}     
+    </script>
 </head>
 <body>
-	<section class = "container forms">
-		<div class="form sign up">
+    <section class="container forms">
+        <div class="form sign up">
+            <!-- Logo-->
+            <img src="retriever.png">
+            <p id="tagline">Retriever</p>
+            <h2>Create an account</h2>
 
-		<!-- Logo-->
-			<img src="retriever.png">
-				<p id="tagline">Retriever</p>
-				<h2>Create an account</h2>
-
-		<!-- Form -->
-		<form method="post" action="user.php">
-			<input type="text" id="fname" name="fname" placeholder="Firstname">
-			<input type="text" id="lname" name="lname" placeholder="Lastname">
-			<input type="text" id="email" name="email" placeholder="Email address">
-			<input type="password" id="password" name="password" placeholder="Password">
-			<br>
-			<input type = "submit" name = "submit" value = "Signup">
-			
-		</form>
-	</div>
+            <!-- Form -->
+            <form method="post" action="signup.php" name="signupForm" onsubmit="return validateForm()">
+                <input type="text" id="fname" name="fname" placeholder="Firstname">
+                <input type="text" id="lname" name="lname" placeholder="Lastname">
+                <input type="text" id="email" name="email" placeholder="Email address">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <br>
+                <input type="submit" name="submit" value="Signup">
+            </form>
+        </div>
+    </section>
 </body>
 </html>

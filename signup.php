@@ -9,24 +9,55 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
             or die("Connection Failed: " . mysqli_connect_error());
 
     // Get form data
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $fname = mysqli_real_escape_string($conn, $_POST['fname']);
+    $lname = mysqli_real_escape_string($conn, $_POST['lname']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Insert into database
-    $sql = "INSERT INTO `signup` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
-
-    // Execute query and check for success
-    $query = mysqli_query($conn, $sql);
-    if ($query) {
-        header("Location: login.html");
-        exit; // make sure to exit after the redirect
-    } else {
-        echo 'Error Occured';
+    // Validate form data
+    $errors = array();
+    if (empty($fname)) {
+        $errors[] = "First name is required";
     }
+    if (empty($lname)) {
+        $errors[] = "Last name is required";
+    }
+    if (empty($email)) {
+        $errors[] = "Email is required";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
+    if (empty($password)) {
+        $errors[] = "Password is required";
+    } elseif (strlen($password) < 6) {
+        $errors[] = "Password must be at least 6 characters long";
+    }
+
+    // If there are errors, display them to the user
+    if (!empty($errors)) {
+        echo "<ul>";
+        foreach ($errors as $error) {
+            echo "<li>$error</li>";
+        }
+        echo "</ul>";
+    } else {
+        // Hash the password
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert into database
+        $sql = "INSERT INTO `signup` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
+
+        // Execute query and check for success
+        $query = mysqli_query($conn, $sql);
+        if ($query) {
+            header("Location: login.html");
+            exit; // make sure to exit after the redirect
+        } else {
+            echo 'Error Occurred';
+        }
+    }
+
+    // Close database connection
+    mysqli_close($conn);
 }
 ?>

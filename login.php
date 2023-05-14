@@ -1,7 +1,7 @@
 <?php
 
 require 'dbcon.php';
-$tbl_name="retriever_users"; // Table name 
+$tbl_name="IS436users"; // Table name 
 
 
 
