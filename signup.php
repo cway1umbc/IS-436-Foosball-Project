@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     $hashed_password = crypt($password, $salt);
 
     // Insert into database
-    $sql = "INSERT INTO `signup` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
+    $sql = "INSERT INTO `IS436users` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
 
     // Execute query and check for success
     $query = mysqli_query($conn, $sql);
