@@ -19,8 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
         die("All fields must be filled out");
     }
 
-    // Hash the password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    // Hash the password using the crypt function
+    $salt = '$2a$07$' . substr(md5(uniqid(rand(), true)), 0, 22);
+    $hashed_password = crypt($password, $salt);
 
     // Insert into database
     $sql = "INSERT INTO `signup` (`fname`, `lname`, `email`, `password`) VALUES ('$fname', '$lname', '$email', '$hashed_password')";
