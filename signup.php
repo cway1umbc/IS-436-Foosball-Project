@@ -29,10 +29,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     // Execute query and check for success
     $query = mysqli_query($conn, $sql);
     if ($query) {
+      
         header("Location: login.html");
         exit; // make sure to exit after the redirect
     } else {
         echo 'Error Occured';
     }
+    if(!$query) {
+        printf("Error message: %s\n", mysqli_error($conn));
+    }
+    
 }
 ?>
