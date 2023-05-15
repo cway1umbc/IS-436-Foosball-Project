@@ -75,7 +75,7 @@
         <h1>Product Listing</h1>
         <p>Your product has been created successfully.</p>
         <div style="text-align: center;">
-            <a href="viewproduct.php" class="btn">View Product Listing</a>
+            <a href="viewproducts.php" class="btn">View Product Listing</a>
         </div>
     </div>
 </body>
