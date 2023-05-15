@@ -1,30 +1,39 @@
 <?php
-
 require 'dbcon.php';
-$tbl_name="IS436users"; // Table name 
 
-
+$tbl_name = "IS436users"; // Table name 
 
 // username and password sent from form 
-$email=$_POST['email']; 
-$password=$_POST['password']; 
+$email = trim($_POST['email']); 
+$password = trim($_POST['password']); 
 
 // To protect MySQL injection (more detail about MySQL injection)
 $email = stripslashes($email);
 $password = stripslashes($password);
 
-$sql="SELECT * FROM $tbl_name WHERE email='$email' and password='$password'";
+$email = mysqli_real_escape_string($conn, $email);
+
+$sql = "SELECT * FROM $tbl_name WHERE email='$email'";
 $result = $conn->query($sql);
 
-// Mysql_num_row is counting table row
-$count=$result->num_rows;
+if ($result->num_rows == 1) {
+    $row = $result->fetch_assoc();
+    $hashed_password = crypt($password, $row['password']);
 
-// If result matched $username and $password, table row must be 1 row
-if($count==1){
-    session_start();
-    $_SESSION['loggedin'] = true;
-    $_SESSION['email'] = $email;
-	
-	header("Location: index2.html"); /* Redirect browser */
-	exit();
-	}
+    // Check if the hashed password matches the stored hashed password
+    if ($hashed_password == $row['password']) {
+        // Start a session and store the email as a session variable
+        session_start();
+        $_SESSION['loggedin'] = true;
+        $_SESSION['email'] = $email;
+
+        // Redirect to the landing page
+        header("Location: landingpg.html");
+        exit();
+    }
+}
+
+// If the login credentials are invalid, redirect to the login page with an error message
+header("Location: login.html?error=1");
+exit();
+?>
