@@ -80,7 +80,7 @@ if ($result->num_rows == 1) {
         $_SESSION['email'] = $email;
 
         // Redirect to the landing page
-        header("Location: landingpg.html");
+        header("Location: landingpg.php");
         exit();
     }
 }
