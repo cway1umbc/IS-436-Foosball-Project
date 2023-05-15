@@ -2,13 +2,23 @@
 <html>
 <head>
 	<title>List a New Product</title>
-	<link rel="stylesheet" href="product1.css">
+	<link rel="stylesheet" href="listproductstyle.css">
+    <link rel="stylesheet" href="landingpg.css">
+
 	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+    <header>
+        <nav>
+          <ul>
+            <li><a href="landingpg.html" onclick="location.href='landingpg.html'">Home</a></li>
+            <li><a href="product.html" onclick="location.href='product.html'">List a Product</a></li>
+            <li><a href="viewproducts.php" onclick="location.href='viewproducts.php'">View Products</a></li>
+          </ul>
+        </nav>
+      </header>
 	<section class="container forms">
 		<div class="form sign up">
-			<img src="https://i.imgur.com/PnZUXOL.png">
 			<p id="tagline">Retriever</p>
 			<h2>List a New Product for Sale</h2> 
             <form method="post" action="product.php">
