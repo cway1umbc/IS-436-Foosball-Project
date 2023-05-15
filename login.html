@@ -53,7 +53,9 @@
         gapi.load('auth2', function () {
             gapi.auth2.init({
                 client_id: '452465441402-sttkqr0m42tgno27l1smnf909thi3qps.apps.googleusercontent.com',
-                scope: 'profile email'
+                scope: 'profile email',
+                redirect_uri: 'https://swe.umbc.edu/login.php'
+
             }).then(function () {
                 var GoogleAuth = gapi.auth2.getAuthInstance();
                 GoogleAuth.signIn().then(function (googleUser) {
