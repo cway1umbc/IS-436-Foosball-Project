@@ -44,12 +44,32 @@
             <!-- Login with google-->
             <div class="line"></div>
             <div class="media options">
-                <a href="#" class="field google">
+                <a href="#" class="field google" onclick="startGoogleSignIn()">
                     <img src="IS-436-Foosball-Project\google.png.png" alt="" class="google-img">
                     <span>Login with Google</span>
                 </a>
             </div>
         </div>
     </section>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+        function startGoogleSignIn() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init({
+                    client_id: '452465441402-kp5mq2ciaksifflseuq5tbkhcvkhrj8q.apps.googleusercontent.com'
+                }).then(function() {
+                    var auth2 = gapi.auth2.getAuthInstance();
+                    auth2.signIn().then(function(googleUser) {
+                        var id_token = googleUser.getAuthResponse().id_token;
+                        // Send the id_token to the server for authentication
+                        // e.g. using XMLHttpRequest or fetch()
+                    }, function(error) {
+                        console.log(error);
+                    });
+                });
+            });
+        }
+    </script>
 </body>
 </html>
