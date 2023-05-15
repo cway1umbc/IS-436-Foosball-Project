@@ -1,42 +1,57 @@
-#tagline {
+.container {
+    margin: auto;
+    margin-top: 20px;
+    width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    border: 3px;
+    border-color: #D1B000;
+    border-style: solid;
+}
+
+.container img {
+    width: 150px;
+    height: 140px;
+    display: block; 
+    margin: auto;
+  }
+
+  #tagline {
     text-align: center;
     font-family: 'EB Garamond';
     color: #D1B000;
     font-style: italic;
     font-size: 20px;
+    margin-top: -10px;
   }
-  .container img {
-    width: 150px;
-    display: block; 
-    margin: auto;
-  }
+
   body {
-              font-family: Arial, sans-serif;
-              background-color: #fff;
+    font-family: 'EB Garamond';
+    background-color: #fff;
           }
-          .container {
-              margin: auto;
-              margin-top: 20x;
-              width: 400px;
-              padding: 20px;
-              background-color: #fff;
-              box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-              border-radius: 5px;
-              border: 3px;
-              border-color: #D1B000;
-              border-style: solid;
-             justify-content: center;
+          
+    header{
+            font-size: 20px;
+            font-weight: 600;
+            color: #232836;
+            text-align: center;
+            margin-bottom: 10px;
           }
+
           input[type="text"],
           input[type="password"] {
               padding: 10px;
               margin-bottom: 20px;
-              width: 80%;
+              width: 100%;
               border-radius: 3px;
               border: none;
               background-color: #f0f0f0;
               font-size: 16px;
               color: #333;
+            
           }
           input[type="submit"] {
               padding: 10px 20px;
@@ -45,20 +60,23 @@
               color: #fff;
               font-size: 16px;
               border-radius: 3px;
+              width: 100%;
               cursor: pointer;
               transition: background-color 0.3s ease;
           }
+
+          input[type="text"],
+          input[type="password"],  
+          input[type="submit"] {
+            display: block;
+            margin: 0 auto 20px;
+}
+
           input[type="submit"]:hover {
               background-color: #444;
           }
           
-          header{
-            font-size: 20px;
-            font-weight: 600;
-            color: #232836;
-            text-align: center;
-          }
-      .left{
+        .left{
           float:left;
       }
       
